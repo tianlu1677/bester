@@ -26,9 +26,12 @@ class Admin::UsersController < Admin::ApplicationController
     end
   end
 
-  def update
+  def update    
     if @user.update(user_params)
-      redirect_to(admin_users_path, notice: '更新成功。')
+      respond_to do |format|
+        format.html { redirect_to(admin_users_path, notice: '更新成功。') }
+        format.js
+      end      
     else
       render :edit
     end
@@ -46,6 +49,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit!
   end
 end

@@ -6,7 +6,6 @@ class Admin::OperationLogsController < Admin::ApplicationController
   def index
     @q = OperationLog.all.ransack(params[:q])
     @operation_logs = @q.result.order('operation_logs.id desc').page(params[:page] || 1).per(params[:per] || 10)
-
   end
 
   def show; end
@@ -29,15 +28,21 @@ class Admin::OperationLogsController < Admin::ApplicationController
 
   def update
     if @operation_log.update(operation_log_params)
-      redirect_to(admin_operation_logs_path, notice: '更新成功。')
+      respond_to do |format|
+        format.html { redirect_to(admin_operation_logs_path, notice: '更新成功。') }
+        format.js
+      end      
     else
       render :edit
     end
   end
 
   def destroy
-    @operation_log.destroy
-    redirect_to(admin_operation_logs_path, notice: '删除成功。')
+    @operation_log.destroy    
+    respond_to do |format|
+      format.html { redirect_to admin_operation_logs_path, notice: '删除成功.' }
+      format.js
+    end    
   end
 
   private
@@ -47,7 +52,7 @@ class Admin::OperationLogsController < Admin::ApplicationController
   end
 
   def operation_log_params
-    params.require(:operation_log).permit(:id, :action, :params, :controller)
+    params.require(:operation_log).permit!
   end
 
   def show_attributes
