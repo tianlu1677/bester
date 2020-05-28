@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def new_link(url, remote: false)
-    link_to t('action_labels.new'), url, class: 'btn btn-md btn-success margin-right-5 pull-right', remote: remote
+    link_to t('action_labels.new'), url, class: 'btn btn-md btn-success margin-right-5 pull-right float-right', remote: remote
   end
 
   def show_link(url)

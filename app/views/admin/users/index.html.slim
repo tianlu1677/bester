@@ -3,15 +3,15 @@
   .col-lg-12
     .card
       .card-header
-        i.fa.fa-align-justify
+        = '☰ '
         = resource_class.model_name.human        
-        = new_link new_admin_user_path
         = page_entries_info @users
-      .card-block[style="overflow: scroll"]
+        = new_link new_admin_user_path
+      .card-block.card-body[style="overflow: scroll"]
         table.table.table-bordered.table-striped.table-condensed
           thead
             tr
-              - attributes = %w[id username email]
+              - attributes = %w[id email]
               - attributes.each do |attr|
                 th
                   = resource_class.human_attribute_name(attr)

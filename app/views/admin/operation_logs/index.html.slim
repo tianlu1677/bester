@@ -3,11 +3,11 @@
   .col-lg-12
     .card
       .card-header
-        i.fa.fa-align-justify
+        = '☰ '
         = resource_class.model_name.human        
         = new_link new_admin_operation_log_path
         = page_entries_info @operation_logs
-      .card-block[style="overflow: scroll"]
+      .card-block.card-body[style="overflow: scroll"]
         table.table.table-bordered.table-striped.table-condensed
           thead
             tr

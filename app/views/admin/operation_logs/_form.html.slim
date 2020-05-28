@@ -6,7 +6,7 @@
           = t("action_labels.#{action_name}")
           = resource_class.model_name.human
       = simple_form_for [:admin, operation_log], wrapper: :horizontal_form do |f|
-        .card-block
+        .card-block.card-body
           - if operation_log.errors.any?
             #error_explanation
               .alert.alert-info[role="alert"]

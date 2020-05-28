@@ -14,6 +14,7 @@
 
 FactoryBot.define do
   factory :user do
-    username { "MyString" }
+    email { "11@qq.com" }
+    password { "123456 "}
   end
 end
