@@ -33,9 +33,9 @@ module Rails6TemplateWeb
     end
 
     config.cache_store = :redis_store, {
-      host: ENV['REDIS_HOST'],
-      port: ENV['REDIS_PORT'],
-      db: ENV['REDIS_CACHE_DB'],
+      host: ENV['CACHE_REDIS_HOST'],
+      port: ENV['CACHE_REDIS_PORT'],
+      db: ENV['CACHE_REDIS_DB'],
       namespace: 'cache',
       expire_after: 3.months
     }

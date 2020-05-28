@@ -409,7 +409,6 @@ DEPENDENCIES
   sidekiq-cron
   sidekiq-failures
   simple_form
-  slim
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)

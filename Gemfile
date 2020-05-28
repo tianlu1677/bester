@@ -27,7 +27,6 @@ gem 'figaro'
 gem 'pundit'
 gem 'ransack'
 gem 'simple_form'
-gem 'slim'
 gem "slim-rails"
 gem 'paranoia'
 # sidekiq
@@ -46,7 +45,6 @@ gem 'oj'
 gem 'foreman'
 gem "clearance"
 # tools
-
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
