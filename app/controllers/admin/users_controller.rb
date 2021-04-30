@@ -6,6 +6,8 @@ class Admin::UsersController < Admin::ApplicationController
   def index
     @q = User.all.ransack(params[:q])
     @users = @q.result.order('users.id desc')#.page(params[:page] || 1).per(params[:per] || 10)
+
+    @pagy, @users = pagy(@users, per_page: params[:per_page], page: params[:page])
   end
 
   def show; end

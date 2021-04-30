@@ -11,8 +11,6 @@
     = resource.send("#{attr}_name".to_sym).presence || "-"
   - elsif resource.send(attr).is_a?(Time)
     = resource.send(attr).try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
-  - elsif resource.send(attr).is_a?(BaseUploader)
-    = image_link(resource.send(attr + "_url"))
   - elsif resource.send(attr).is_a?(TrueClass)
     = '是'
   - elsif resource.send(attr).is_a?(FalseClass)

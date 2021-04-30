@@ -5,7 +5,8 @@ class Admin::OperationLogsController < Admin::ApplicationController
 
   def index
     @q = OperationLog.all.ransack(params[:q])
-    @operation_logs = @q.result.order('operation_logs.id desc').page(params[:page] || 1).per(params[:per] || 10)
+    @operation_logs = @q.result.order('operation_logs.id desc')#.page(params[:page] || 1).per(params[:per] || 10)
+    @pagy, @operation_logs = pagy(@operation_logs, items: params[:per_page] || 2, page: params[:page])
   end
 
   def show; end

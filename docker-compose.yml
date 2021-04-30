@@ -10,7 +10,7 @@ services:
       - ENV=production
       - RAILS_ENV=production
     env_file:
-      - app.production.env
+      - .env
     depends_on:
       - redis
       - db

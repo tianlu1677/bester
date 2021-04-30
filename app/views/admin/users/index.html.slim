@@ -5,7 +5,7 @@
       .card-header
         = '☰ '
         = resource_class.model_name.human        
-        = page_entries_info @users
+        / = page_entries_info @users
         = new_link new_admin_user_path
       .card-block.card-body[style="overflow: scroll"]
         table.table.table-bordered.table-striped.table-condensed
@@ -31,4 +31,4 @@
                 = show_link admin_user_path(user)
                 = destroy_link admin_user_path(user), remote: true
                   
-        = paginate @users
+        / = paginate @users
