@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     @q = User.all.ransack(params[:q])
-    @users = @q.result.order('users.id desc').page(params[:page] || 1).per(params[:per] || 10)
+    @users = @q.result.order('users.id desc')#.page(params[:page] || 1).per(params[:per] || 10)
   end
 
   def show; end
