@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom'
 require("chartkick")
 require("chart.js")
 
+
 window.toastr = toastr;
 var Turbolinks = require("turbolinks")
 Turbolinks.start()
