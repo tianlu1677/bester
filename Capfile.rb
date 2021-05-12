@@ -36,8 +36,8 @@ require 'capistrano/sidekiq'
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 require "capistrano/copy"
-install_plugin Capistrano::Sidekiq  # Default sidekiq tasks
-install_plugin Capistrano::Sidekiq::Systemd
+# install_plugin Capistrano::Sidekiq  # Default sidekiq tasks
+# install_plugin Capistrano::Sidekiq::Systemd
 # install_plugin Capistrano::Sidekiq::Upstart
 
 install_plugin Capistrano::Puma  # Default puma tasks
