@@ -1,0 +1,24 @@
+[Unit]
+Description=sidekiq for bester (production)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/bester/current
+ExecStart=~/.rvm/bin/rvm 2.6.3 do bundle exec sidekiq -e production
+ExecReload=/bin/kill -TSTP $MAINPID
+ExecStop=/bin/kill -TERM $MAINPID
+StandardOutput=append:/var/www/bester/shared/log/sidekiq.log
+StandardError=append:/var/www/bester/shared/log/sidekiq.error.log
+
+
+
+
+
+RestartSec=1
+Restart=on-failure
+
+SyslogIdentifier=sidekiq
+
+[Install]
+WantedBy=default.target

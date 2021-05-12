@@ -20,7 +20,7 @@ gem 'redis-objects'
 gem 'redis-rails'
 
 gem 'enumerize'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'pundit'
 gem 'ransack'
 gem 'simple_form'
@@ -60,6 +60,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano', '3.16.0', require: false
+  gem 'sshkit', '1.18.2'
+  # gem 'capistrano-local-precompile', '~> 1.1.1', require: false
+  gem 'capistrano3-puma', '~> 5.0.2', require: false
+  gem 'capistrano-rails', '~> 1.6.1', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', '~> 1.0.3', require: false
+
+  gem 'capistrano-scm-copy', github: 'tianlu1677/capistrano-scm-copy', branch: 'master'
 end
 
 group :test do

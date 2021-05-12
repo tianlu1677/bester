@@ -6,7 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Rails6TemplateWeb
+Dotenv::Railtie.load
+
+module Bester
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -32,13 +34,13 @@ module Rails6TemplateWeb
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
 
-    config.cache_store = :redis_store, {
+    config.cache_store = [:redis_cache_store, {
       host: ENV['CACHE_REDIS_HOST'],
       port: ENV['CACHE_REDIS_PORT'],
       db: ENV['CACHE_REDIS_DB'],
       namespace: 'cache',
       expire_after: 3.months
-    }
+    }]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
