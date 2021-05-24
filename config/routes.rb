@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     root 'home#index'
     resources :operation_logs
     resources :users
+    resources :chatbots
   end
 end

@@ -1,11 +1,12 @@
 import './admin/style.scss'
-import "core-js/stable"
+// import "core-js/stable"
 import 'bootstrap'
 import "@coreui/coreui"
 import toastr from 'toastr';
 import queryString from 'query-string'
 window.queryString = queryString
 import ReactDOM from 'react-dom'
+import "controllers"
 
 // https://chartkick.com/
 require("chartkick")
