@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'rails', '~> 6.1.3.1'
+gem 'rails', '~> 6.1.3.2'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.3.0'
@@ -38,6 +38,7 @@ gem 'pagy', '~> 3.10.0'
 gem 'oj'
 gem 'foreman'
 gem "clearance"
+gem 'rest-client'
 # tools
 
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -61,6 +62,7 @@ group :development do
   gem 'capistrano-rvm', require: false
   gem 'capistrano-scm-copy', github: 'tianlu1677/capistrano-scm-copy', branch: 'master', require: false
   gem 'capistrano-sidekiq', '~> 1.0.3', require: false
+  gem 'annotate'
 end
 
 group :development, :test do

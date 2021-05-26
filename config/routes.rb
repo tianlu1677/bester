@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  post '/message', to: 'messages#message'
+
   # 管理后台
   namespace :admin do
     root 'home#index'

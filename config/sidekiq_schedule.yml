@@ -4,3 +4,7 @@ HardWorker:
   cron: "*/5 * * * *"
   class: "HardWorker"
   queue: default
+ChatRoomAlertWorker:
+  cron: "1 9-15/4 * * *"
+  class: 'ChatRoomAlertWorker'
+  queue: default
