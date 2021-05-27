@@ -33,7 +33,7 @@ class ChatMessage < ApplicationRecord
                   contact_name: data[:contactName],
                   contact_id: data[:contactId],
                   contact_avatar_url: data[:avatar],
-      )      
+      )
     end
   end
 end
