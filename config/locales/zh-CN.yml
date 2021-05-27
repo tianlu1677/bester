@@ -36,14 +36,17 @@ zh-CN:
     deleted_at:   删除时间
     created_at:   创建时间
     updated_at:   更新时间
-    
+
   activerecord:
     models:
-      user: 用户      
-      operation_log: 操作日志        
+      user: 用户
+      operation_log: 操作日志
       account: 用户
       action: 动作记录
-    attributes: 
+      chat_message: 聊天记录
+      chat_root: 群聊
+      chat_contact: 聊天联系人
+    attributes:
       user:
         id: ID
         username: 用户名
@@ -82,7 +85,7 @@ zh-CN:
         data: 文件
         data_file_name:  文件名
         data_content_type: 文件类型
-        data_file_size:  文件大小  
+        data_file_size:  文件大小
         type: 类型
         cover: 截图
         video: 转化后视频

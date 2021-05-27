@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2021_05_27_034100) do
     t.string "marker"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "bot_uid"
+    t.string "room_uid"
     t.index ["contact_name"], name: "index_chat_contacts_on_contact_name"
     t.index ["contact_uid"], name: "index_chat_contacts_on_contact_uid"
   end

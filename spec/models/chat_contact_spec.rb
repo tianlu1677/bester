@@ -11,6 +11,8 @@
 #  marker       :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  bot_uid      :string
+#  room_uids    :text             default([]), is an Array
 #
 require 'rails_helper'
 

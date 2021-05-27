@@ -14,41 +14,33 @@
 #  updated_at :datetime         not null
 #
 class ChatRoom < ApplicationRecord
+  validates :room_uid, presence: true
+  validates_uniqueness_of :room_uid
+
+  def chat_contacts
+    ChatContact.where('room_uids && ? ', "{#{room_uid}}")
+  end
 
   class << self
     def parse(data)
       return if data[:roomId].blank?
 
       chat_room = ChatRoom.find_by(room_uid: data[:roomId])
-      return if chat_room.present?
+      if chat_room.present?
+        chat_room.update(room_topic: data[:roomTopic]) if chat_room.room_topic != data[:roomTopic]
+        return
+      end
 
       chat_room = ChatRoom.create(
-                  room_uid: data[:roomId],
-                  room_topic: data[:roomTopic],
-                  chat_uid: data[:chatId],
-                  bot_uid: data[:botId],
-                  bot_weixin: data[:botWeixin]
+        room_uid: data[:roomId],
+        room_topic: data[:roomTopic],
+        chat_uid: data[:chatId],
+        bot_uid: data[:botId],
+        bot_weixin: data[:botWeixin]
       )
     end
   end
-
-  def send_message_alert
-    url = "https://ex-api.botorange.com/message/send"
-    token = "60ae2102b0e786003f0e18fa"
-    data = {
-      "chatId": chat_uid,
-      "token": token,
-      "messageType": 0,# // MessageType, check below
-      "payload": {
-        "text": "当前时间是 #{Time.now}, 今天饮食怎么样？",
-        "mention": [], #// mention list, nullable, you can only set it when you send text message to room,
-      }
-    }
-
-    RestClient.post(url, data.to_json, {content_type: :json, accept: :json})
-  end
 end
-
 
 # {
 #   "data": {

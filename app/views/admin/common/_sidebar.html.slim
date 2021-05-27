@@ -15,13 +15,25 @@
           li.nav-item
             a.nav-link[href="/admin/users"]
               i.icon-people
-              | 用户管理                            
+              | 用户管理
+          li.nav-item
+            a.nav-link[href="/admin/chat_rooms"]
+              i.icon-people
+              | 聊天组管理
+          li.nav-item
+            a.nav-link[href="/admin/chat_messages"]
+              i.icon-people
+              | 聊天信息管理
+          li.nav-item
+            a.nav-link[href="/admin/chat_contacts"]
+              i.icon-people
+              | 聊天联系人管理
 
       li.nav-item.nav-dropdown
         a.nav-link.nav-dropdown-toggle[href="#"]
           i.icon-list
           |  管理员记录
-        ul.nav-dropdown-items          
+        ul.nav-dropdown-items
           li.nav-item
             a.nav-link[href="/admin/sidekiq" target="_blank"]
               i.icon-book-open
@@ -34,7 +46,7 @@
           li.nav-item
             a.nav-link[href="/admin/pghero"]
               i.icon-book-open
-              | 数据库索引    
+              | 数据库索引
 
 javascript:
   $(function(){
@@ -57,7 +69,7 @@ javascript:
         }
       });
 
-       
+
       $('.navbar-toggler').click(function(){
 
         if ($(this).hasClass('sidebar-toggler')) {

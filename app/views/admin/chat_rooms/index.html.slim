@@ -4,7 +4,7 @@
     .card
       .card-header
         = '☰ '
-        = resource_class.model_name.human        
+        = resource_class.model_name.human
         = new_link new_admin_chat_room_path
         / = page_entries_info @chat_rooms
       .card-block.card-body[style="overflow: scroll"]
@@ -28,10 +28,10 @@
                 td = chat_room.bot_weixin
                 td = chat_room.status
                 td = chat_room.mark
-                / td = chat_room.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"                
+                / td = chat_room.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
                 td
                   = edit_link edit_admin_chat_room_path(chat_room)
                   = show_link admin_chat_room_path(chat_room)
                   = destroy_link admin_chat_room_path(chat_room), remote: true
-                  
+
         == pagy_bootstrap_nav @pagy
