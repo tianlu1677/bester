@@ -28,14 +28,14 @@ class ChatContact < ApplicationRecord
         return
       end
 
-      room_uids = data[:roomId] if data[:roomId].present?
+      room_uids = room_uids.present? ? room_uids : []
       chat_contact = ChatContact.create(
         contact_uid: data[:contactId],
         contact_name: data[:contactName],
         avatar_url: data[:avatar],
         contact_type: data[:contactType],
         bot_uid: data[:botId],
-        room_uids: [room_uids]
+        room_uids: room_uids
       )
     end
   end
