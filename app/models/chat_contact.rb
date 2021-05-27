@@ -15,7 +15,6 @@
 #  room_uids    :text             default([]), is an Array
 #
 class ChatContact < ApplicationRecord
-
   scope :join_room_contacts, ->(room_uid) { where('room_uids && ? ', "{#{room_uid}}") }
 
   class << self
@@ -36,7 +35,7 @@ class ChatContact < ApplicationRecord
         avatar_url: data[:avatar],
         contact_type: data[:contactType],
         bot_uid: data[:botId],
-        room_uids: room_uids
+        room_uids: [room_uids]
       )
     end
   end
