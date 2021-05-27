@@ -18,6 +18,8 @@ module Bester
     config.i18n.available_locales = [:"zh-CN", :en]
     config.i18n.default_locale = :"zh-CN"
 
+    config.autoload_paths << Rails.root.join('app/services')
+
     config.generators do |g|
       g.assets false
       g.helper false

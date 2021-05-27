@@ -18,5 +18,9 @@
 require 'rails_helper'
 
 RSpec.describe ChatMessage, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "create" do
+    it "create success" do
+      FactoryBot.create(:chat_message)
+    end
+  end
 end

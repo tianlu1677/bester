@@ -15,10 +15,8 @@
 #
 FactoryBot.define do
   factory :chat_room do
-    room_id { "MyString" }
+    room_uid { "MyString" }
     room_topic { "MyString" }
-    chat_id { "MyString" }
-    bot_id { "MyString" }
-    bot_weixin { "MyString" }
+    chat_uid { "MyString" }
   end
 end

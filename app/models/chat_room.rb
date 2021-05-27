@@ -19,7 +19,7 @@ class ChatRoom < ApplicationRecord
     def parse(data)
       return if data[:roomId].blank?
 
-      chat_room = ChatRoom.find_by(room_id: data[:roomId])
+      chat_room = ChatRoom.find_by(room_uid: data[:roomId])
       return if chat_room.present?
 
       chat_room = ChatRoom.create(

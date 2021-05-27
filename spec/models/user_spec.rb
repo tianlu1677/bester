@@ -19,6 +19,6 @@ RSpec.describe User, type: :model do
     it 'ok' do
       user = create(:user)
       expect(user.id).to eq 1
-    end 
-  end  
+    end
+  end
 end

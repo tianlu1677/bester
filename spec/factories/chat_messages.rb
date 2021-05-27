@@ -17,13 +17,8 @@
 #
 FactoryBot.define do
   factory :chat_message do
-    room_id { "MyString" }
-    chat_id { "MyString" }
-    payload { "" }
-    content { "MyText" }
-    type { "" }
-    contact_name { "MyString" }
-    contact_id { "MyString" }
-    contact_avatar_url { "MyString" }
+    room_uid { "MyString" }
+    chat_uid { "MyString" }
+    payload { {} }
   end
 end

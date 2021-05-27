@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
     ChatRoom.parse(chat_room_params)
     ChatMessage.parse(params[:message][:data])
-
+    ChatContact.parse(params[:message][:data])
     render json: { data: params[:data] }
   end
 end

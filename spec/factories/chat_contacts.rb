@@ -14,11 +14,7 @@
 #
 FactoryBot.define do
   factory :chat_contact do
-    contact_id { "MyString" }
-    contact_name { "MyString" }
-    avatar_url { "MyString" }
-    contact_type { "MyString" }
-    alias_name { "MyString" }
-    marker { "MyString" }
+    contact_uid { "xxx" }
+    contact_name { "A1" }
   end
 end

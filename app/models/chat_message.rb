@@ -17,6 +17,26 @@
 #
 class ChatMessage < ApplicationRecord
 
+  MES_TYPE = {        
+     1  => 'attachment',
+     2  => 'audio',
+     3  => 'contact',
+     4  => 'chatHistory',
+     5  => 'emoticon',
+     6  => 'image',
+     7  => 'text',
+     8  => 'location',
+     9  => 'miniprogram',
+     10 => 'money',
+     11 => 'recalled',
+     12 => 'link',
+     13 => 'video',
+     9999 => 'roomoinvitation',
+     10000  => 'system',
+     10001  => 'wechatSystem'    
+    }
+  
+
   class << self
     def parse(data)      
       chat_message = ChatMessage.find_by(message_uid: data[:messageId])
@@ -31,7 +51,7 @@ class ChatMessage < ApplicationRecord
                   contact_avatar_url: data[:avatar],
                   message_type: data[:type],
                   contact_name: data[:contactName],
-                  contact_id: data[:contactId],
+                  contact_uid: data[:contactId],
                   contact_avatar_url: data[:avatar],
       )
     end

@@ -16,5 +16,10 @@
 require 'rails_helper'
 
 RSpec.describe ChatRoom, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "create" do
+
+    it "create success" do
+      FactoryBot.create(:chat_room)
+    end
+  end
 end
