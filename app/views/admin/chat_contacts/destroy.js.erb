@@ -1,0 +1,5 @@
+<% if @chat_contact.errors.empty? %>
+  $("#chat_contact_<%= @chat_contact.id %>").remove(); toastr.success("删除成功", "温馨提示")
+<% else %>
+  toastr.error("删除失败", "温馨提示") 
+<% end %>  

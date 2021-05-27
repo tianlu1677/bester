@@ -1,0 +1,36 @@
+.row
+  = render "search"
+  .col-lg-12
+    .card
+      .card-header
+        = '☰ '
+        = resource_class.model_name.human        
+        = new_link new_admin_chat_contact_path
+        / = page_entries_info @chat_contacts
+      .card-block.card-body[style="overflow: scroll"]
+        table.table.table-bordered.table-striped.table-condensed
+          thead
+            tr
+              - attributes = %w[id contact_uid contact_name avatar_url contact_type alias_name marker created_at ]
+              - attributes.each do |attr|
+                th
+                  = resource_class.human_attribute_name(attr)
+              th
+                = t('action_labels.action')
+          tbody
+            - @chat_contacts.each do |chat_contact|
+              tr id="chat_contact_#{chat_contact.id}"
+                td = chat_contact.id
+                td = chat_contact.contact_uid
+                td = chat_contact.contact_name
+                td = chat_contact.avatar_url
+                td = chat_contact.contact_type
+                td = chat_contact.alias_name
+                td = chat_contact.marker
+                td = chat_contact.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"                
+                td
+                  = edit_link edit_admin_chat_contact_path(chat_contact)
+                  = show_link admin_chat_contact_path(chat_contact)
+                  = destroy_link admin_chat_contact_path(chat_contact), remote: true
+                  
+        == pagy_nav @pagy

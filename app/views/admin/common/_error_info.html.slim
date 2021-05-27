@@ -1,0 +1,10 @@
+- if item.errors.any?
+  #error_explanation
+    .alert.alert-info[role="alert"]
+      strong
+        = pluralize(item.errors.count, "错误")
+        |  导致不能保存: 
+      ul
+        - item.errors.full_messages.each do |message|
+          li
+            = message  

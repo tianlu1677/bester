@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_143749) do
+ActiveRecord::Schema.define(version: 2021_05_27_034100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,25 +76,38 @@ ActiveRecord::Schema.define(version: 2021_05_26_143749) do
     t.index ["webhook_id"], name: "index_backpacks_on_webhook_id"
   end
 
+  create_table "chat_contacts", force: :cascade do |t|
+    t.string "contact_uid"
+    t.string "contact_name"
+    t.string "avatar_url"
+    t.string "contact_type"
+    t.string "alias_name"
+    t.string "marker"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_name"], name: "index_chat_contacts_on_contact_name"
+    t.index ["contact_uid"], name: "index_chat_contacts_on_contact_uid"
+  end
+
   create_table "chat_messages", force: :cascade do |t|
-    t.string "room_id"
-    t.string "message_id"
-    t.string "chat_id"
+    t.string "room_uid"
+    t.string "message_uid"
+    t.string "chat_uid"
     t.jsonb "payload"
     t.text "content"
     t.string "message_type"
     t.string "contact_name"
-    t.string "contact_id"
+    t.string "contact_uid"
     t.string "contact_avatar_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "chat_rooms", force: :cascade do |t|
-    t.string "room_id"
+    t.string "room_uid"
     t.string "room_topic"
-    t.string "chat_id"
-    t.string "bot_id"
+    t.string "chat_uid"
+    t.string "bot_uid"
     t.string "bot_weixin"
     t.string "status"
     t.string "mark"

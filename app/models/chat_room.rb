@@ -3,10 +3,10 @@
 # Table name: chat_rooms
 #
 #  id         :bigint           not null, primary key
-#  room_id    :string
+#  room_uid   :string
 #  room_topic :string
-#  chat_id    :string
-#  bot_id     :string
+#  chat_uid   :string
+#  bot_uid    :string
 #  bot_weixin :string
 #  status     :string
 #  mark       :string
@@ -23,10 +23,10 @@ class ChatRoom < ApplicationRecord
       return if chat_room.present?
 
       chat_room = ChatRoom.create(
-                  room_id: data[:roomId],
+                  room_uid: data[:roomId],
                   room_topic: data[:roomTopic],
-                  chat_id: data[:chatId],
-                  bot_id: data[:botId],
+                  chat_uid: data[:chatId],
+                  bot_uid: data[:botId],
                   bot_weixin: data[:botWeixin]
       )
     end
@@ -36,7 +36,7 @@ class ChatRoom < ApplicationRecord
     url = "https://ex-api.botorange.com/message/send"
     token = "60ae2102b0e786003f0e18fa"
     data = {
-      "chatId": chat_id,
+      "chatId": chat_uid,
       "token": token,
       "messageType": 0,# // MessageType, check below
       "payload": {

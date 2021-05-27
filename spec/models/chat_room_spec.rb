@@ -3,10 +3,10 @@
 # Table name: chat_rooms
 #
 #  id         :bigint           not null, primary key
-#  room_id    :string
+#  room_uid   :string
 #  room_topic :string
-#  chat_id    :string
-#  bot_id     :string
+#  chat_uid   :string
+#  bot_uid    :string
 #  bot_weixin :string
 #  status     :string
 #  mark       :string

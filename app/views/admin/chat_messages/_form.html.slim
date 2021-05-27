@@ -1,0 +1,15 @@
+.row
+  .col-md-6
+    .card
+      .card-header
+        h3
+          = t("action_labels.#{action_name}")
+          = resource_class.model_name.human
+      = simple_form_for [:admin, chat_message], wrapper: :horizontal_form do |f|
+        .card-block.card-body
+          = render "admin/common/error_info", item: chat_message
+          = f.input :content
+        .card-footer
+          
+          = index_link(admin_chat_messages_path)
+          = save_link

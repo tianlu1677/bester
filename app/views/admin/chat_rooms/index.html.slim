@@ -1,0 +1,37 @@
+.row
+  = render "search"
+  .col-lg-12
+    .card
+      .card-header
+        = '☰ '
+        = resource_class.model_name.human        
+        = new_link new_admin_chat_room_path
+        / = page_entries_info @chat_rooms
+      .card-block.card-body[style="overflow: scroll"]
+        table.table.table-bordered.table-striped.table-condensed
+          thead
+            tr
+              - attributes = %w[id room_uid room_topic chat_uid bot_uid bot_weixin status mark]
+              - attributes.each do |attr|
+                th
+                  = resource_class.human_attribute_name(attr)
+              th
+                = t('action_labels.action')
+          tbody
+            - @chat_rooms.each do |chat_room|
+              tr id="chat_room_#{chat_room.id}"
+                td = chat_room.id
+                td = chat_room.room_uid
+                td = chat_room.room_topic
+                td = chat_room.chat_uid
+                td = chat_room.bot_uid
+                td = chat_room.bot_weixin
+                td = chat_room.status
+                td = chat_room.mark
+                / td = chat_room.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"                
+                td
+                  = edit_link edit_admin_chat_room_path(chat_room)
+                  = show_link admin_chat_room_path(chat_room)
+                  = destroy_link admin_chat_room_path(chat_room), remote: true
+                  
+        == pagy_nav @pagy

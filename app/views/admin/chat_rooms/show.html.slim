@@ -12,12 +12,12 @@
             th
               | 内容
         tbody
-          - OperationLog.attribute_names.each do |attr|
+          - ChatRoom.attribute_names.each do |attr|
             tr
               th
                 = resource_class.human_attribute_name(attr)
               th
-                = @operation_log.send(attr)
-      = index_link admin_operation_logs_path
+                = @chat_room.send(attr)
+      = index_link admin_chat_rooms_path
       
     

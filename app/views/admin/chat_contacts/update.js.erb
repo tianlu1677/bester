@@ -1,0 +1,6 @@
+<% if @chat_contact.errors.empty? %>
+  $("#chat_contact_<%= @chat_contact.id %>").html('<%= j( render :partial => 'admin/chat_contacts/chat_contact', locals: { chat_contact: @chat_contact} ) %>');
+  toastr.success("执行成功", "温馨提示") 
+<% else %>
+  toastr.error("执行失败", "温馨提示") 
+<% end %>

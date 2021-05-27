@@ -3,14 +3,14 @@
 # Table name: chat_messages
 #
 #  id                 :bigint           not null, primary key
-#  room_id            :string
-#  message_id         :string
-#  chat_id            :string
+#  room_uid           :string
+#  message_uid        :string
+#  chat_uid           :string
 #  payload            :jsonb
 #  content            :text
 #  message_type       :string
 #  contact_name       :string
-#  contact_id         :string
+#  contact_uid        :string
 #  contact_avatar_url :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
