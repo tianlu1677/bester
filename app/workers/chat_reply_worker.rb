@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-class ChatRoomAlertWorker
+class ChatReplyWorker
   include Sidekiq::Worker
   sidekiq_options queue: :default, retry: false, backtrace: true
 
-  def perform(*_args)
-    ChatRoom.all.each do |chat_room|
-      type = 'text'
-      payload = {
-        text: "当前时间是 #{Time.now}. 当前吃饭了吗？"
-      }
-      ChatSendMessageService.new(chat_room.chat_uid, type, payload)
-    end
+  def perform(message_id)
+    message = ChatMessage.find(message_id)
+    content = message.content
+    chat_uid = message.chat_uid
+    ChatReplyService.new(content).reply!(chat_uid)
   end
 end
 

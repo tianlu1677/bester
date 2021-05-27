@@ -18,6 +18,13 @@
 class ChatMessage < ApplicationRecord
   belongs_to :chat_room, foreign_key: :room_uid, primary_key: :room_uid, optional: true
 
+  after_create_commit :boardcast_message_receive
+
+  def boardcast_message_receive
+    ChatReplyWorker.perform_async(id)
+    # ChatReplyService.new(content).reply!(chat_uid)
+  end
+
   class << self
     def parse(data)
       chat_message = ChatMessage.find_by(message_uid: data[:messageId])
