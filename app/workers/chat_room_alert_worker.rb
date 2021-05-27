@@ -10,7 +10,7 @@ class ChatRoomAlertWorker
       payload = {
         text: "当前时间是 #{Time.now}. 当前吃饭了吗？"
       }
-      ChatSendMessageService.new(chat_room.chat_uid, type, payload)
+      ChatSendMessageService.new(chat_room.chat_uid, type, payload).send!
     end
   end
 end
