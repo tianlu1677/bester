@@ -8,54 +8,52 @@
 #  chat_uid           :string
 #  payload            :jsonb
 #  content            :text
-#  message_type       :string
 #  contact_name       :string
 #  contact_uid        :string
 #  contact_avatar_url :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  message_type       :integer
 #
 class ChatMessage < ApplicationRecord
-
-  MES_TYPE = {        
-     1  => 'attachment',
-     2  => 'audio',
-     3  => 'contact',
-     4  => 'chatHistory',
-     5  => 'emoticon',
-     6  => 'image',
-     7  => 'text',
-     8  => 'location',
-     9  => 'miniprogram',
-     10 => 'money',
-     11 => 'recalled',
-     12 => 'link',
-     13 => 'video',
-     9999 => 'roomoinvitation',
-     10000  => 'system',
-     10001  => 'wechatSystem'    
-    }
-  
+  belongs_to :chat_room, foreign_key: :room_uid, primary_key: :room_uid, optional: true
 
   class << self
-    def parse(data)      
+    def parse(data)
       chat_message = ChatMessage.find_by(message_uid: data[:messageId])
       return if chat_message.present?
 
-      chat_room = ChatMessage.create(
-                  room_uid: data[:roomId],
-                  message_uid: data[:messageId],
-                  chat_uid: data[:chatId],
-                  payload: data[:payload],
-                  # content: data[:payload],
-                  contact_avatar_url: data[:avatar],
-                  message_type: data[:type],
-                  contact_name: data[:contactName],
-                  contact_uid: data[:contactId],
-                  contact_avatar_url: data[:avatar],
-      )
+      content = data.dig(:payload, :text)
+      ChatMessage.create!(room_uid: data[:roomId],
+                          message_uid: data[:messageId],
+                          chat_uid: data[:chatId],
+                          payload: data[:payload],
+                          content: content,
+                          contact_avatar_url: data[:avatar],
+                          message_type: data[:type],
+                          contact_name: data[:contactName],
+                          contact_uid: data[:contactId])
     end
   end
+
+  MSG_TYPE = {
+    1 => 'attachment',
+    2 => 'audio',
+    3 => 'contact',
+    4 => 'chatHistory',
+    5 => 'emoticon',
+    6 => 'image',
+    7 => 'text',
+    8 => 'location',
+    9 => 'miniprogram',
+    10 => 'money',
+    11 => 'recalled',
+    12 => 'link',
+    13 => 'video',
+    9999 => 'roomoinvitation',
+    10_000 => 'system',
+    10_001 => 'wechatSystem'
+  }
 end
 
 # {

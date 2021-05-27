@@ -11,7 +11,7 @@
         table.table.table-bordered.table-striped.table-condensed
           thead
             tr
-              - attributes = %w[id room_uid room_topic chat_uid bot_uid bot_weixin status mark]
+              - attributes = %w[id room_uid room_topic messages chat_uid bot_uid bot_weixin status mark]
               - attributes.each do |attr|
                 th
                   = resource_class.human_attribute_name(attr)
@@ -23,7 +23,14 @@
                 td = chat_room.id
                 td = chat_room.room_uid
                 td = chat_room.room_topic
-                td = chat_room.chat_uid
+                td = link_to chat_room.chat_messages.count, admin_chat_messages_path(q: { room_uid_eq: chat_room.room_uid })
+                td
+                  = chat_room.chat_uid
+                  br
+                  - chat_room.chat_contacts.each do |c|
+                    = image_link c.avatar_url
+                    br
+                    = link_to c.contact_name, admin_chat_contacts_path(q: { id_eq: c.id})
                 td = chat_room.bot_uid
                 td = chat_room.bot_weixin
                 td = chat_room.status

@@ -11,5 +11,7 @@ class RenameChatRoom < ActiveRecord::Migration[6.1]
 
     add_column :chat_contacts, :bot_uid, :string
     add_column :chat_contacts, :room_uids, :text, array: true, default: []
+    remove_column :chat_messages, :message_type
+    add_column :chat_messages, :message_type, :integer
   end
 end

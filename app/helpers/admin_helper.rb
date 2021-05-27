@@ -2,7 +2,8 @@
 
 module AdminHelper
   def new_link(url, remote: false)
-    link_to t('action_labels.new'), url, class: 'btn btn-md btn-success margin-right-5 pull-right float-right', remote: remote
+    link_to t('action_labels.new'), url, class: 'btn btn-md btn-success margin-right-5 pull-right float-right',
+                                         remote: remote
   end
 
   def show_link(url)
@@ -55,9 +56,9 @@ module AdminHelper
     end
   end
 
-  def video_link(url, size: '80x80')
+  def video_link(url, size: '100x100')
     return if url.blank?
 
-    video_tag rul, size: size
+    video_tag url, size: size, controls: true
   end
 end

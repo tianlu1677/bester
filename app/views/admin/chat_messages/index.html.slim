@@ -4,7 +4,7 @@
     .card
       .card-header
         = '☰ '
-        = resource_class.model_name.human        
+        = resource_class.model_name.human
         = new_link new_admin_chat_message_path
         / = page_entries_info @chat_messages
       .card-block.card-body[style="overflow: scroll"]
@@ -20,22 +20,33 @@
           tbody
             - @chat_messages.each do |chat_message|
               tr id="chat_message_#{chat_message.id}"
+                - msg_type = ChatMessage::MSG_TYPE[chat_message.message_type]
                 td = chat_message.id
-                td 
+                td
                    = image_link chat_message.contact_avatar_url
                    br
                    = chat_message.contact_name
                    br
                    = chat_message.contact_uid
-                td = chat_message.room_uid
+                td
+                  = link_to (chat_message.chat_room&.room_topic || '-'), admin_chat_messages_path(q: { room_uid_eq: chat_message.room_uid })
+                  br
+                  = chat_message.room_uid
                 td = chat_message.message_uid
-                td = chat_message.message_type
-                td = chat_message.payload.to_json
+                td = msg_type
+                td
+                  - case msg_type
+                    - when 'image'
+                      = image_link chat_message.payload['imageUrl']
+                    - when 'video'
+                      = video_link chat_message.payload['videoUrl'], size: '200x200'
+                    - else
+                      = chat_message.payload.to_json
                 td = chat_message.chat_uid
-                td = chat_message.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"  
+                td = chat_message.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
                 td
                   = edit_link edit_admin_chat_message_path(chat_message)
                   = show_link admin_chat_message_path(chat_message)
                   = destroy_link admin_chat_message_path(chat_message), remote: true
-                  
+
         == pagy_bootstrap_nav @pagy

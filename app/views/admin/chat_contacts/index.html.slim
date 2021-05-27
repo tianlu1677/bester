@@ -4,7 +4,7 @@
     .card
       .card-header
         = '☰ '
-        = resource_class.model_name.human        
+        = resource_class.model_name.human
         = new_link new_admin_chat_contact_path
         / = page_entries_info @chat_contacts
       .card-block.card-body[style="overflow: scroll"]
@@ -23,14 +23,14 @@
                 td = chat_contact.id
                 td = chat_contact.contact_uid
                 td = chat_contact.contact_name
-                td = chat_contact.avatar_url
+                td = image_link chat_contact.avatar_url
                 td = chat_contact.contact_type
                 td = chat_contact.alias_name
                 td = chat_contact.marker
-                td = chat_contact.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"                
+                td = chat_contact.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
                 td
                   = edit_link edit_admin_chat_contact_path(chat_contact)
                   = show_link admin_chat_contact_path(chat_contact)
                   = destroy_link admin_chat_contact_path(chat_contact), remote: true
-                  
+
         == pagy_bootstrap_nav @pagy
