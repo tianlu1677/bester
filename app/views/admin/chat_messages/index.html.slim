@@ -11,7 +11,7 @@
         table.table.table-bordered.table-striped.table-condensed
           thead
             tr
-              - attributes = %w[id contact_avatar_url room_uid message_uid message_type payload chat_uid created_at]
+              - attributes = %w[id contact_name room_uid message_uid message_type payload chat_uid created_at]
               - attributes.each do |attr|
                 th
                   = resource_class.human_attribute_name(attr)
@@ -27,15 +27,15 @@
                    = chat_message.contact_name
                    br
                    = chat_message.contact_uid
-                td = chat_message.room_id
-                td = chat_message.message_id
+                td = chat_message.room_uid
+                td = chat_message.message_uid
                 td = chat_message.message_type
                 td = chat_message.payload.to_json
-                td = chat_message.chat_id
+                td = chat_message.chat_uid
                 td = chat_message.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"  
                 td
                   = edit_link edit_admin_chat_message_path(chat_message)
                   = show_link admin_chat_message_path(chat_message)
                   = destroy_link admin_chat_message_path(chat_message), remote: true
                   
-        == pagy_nav @pagy
+        == pagy_bootstrap_nav @pagy
