@@ -23,7 +23,7 @@ class ChatContact < ApplicationRecord
       room_uid = data[:roomId]
       chat_contact = ChatContact.find_by(contact_uid: data[:contactId])
       if chat_contact.present?
-        if room_uid.present? && !chat_contact.room_uids.include?(room_uid)
+        if room_uid.present? && !chat_contact.room_uids.to_s.include?(room_uid)
           chat_contact.update(room_uid: chat_contact.room_uids.concat([room_uid]))
         end
         return
