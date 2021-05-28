@@ -27,6 +27,9 @@
               br
               .alert.alert-info
                 = chat_action.content
+                br
+                = "@" + chat_action.mention_contacts.pluck(:contact_name).join(' @') if chat_action.mention.present?
+
               br          
             td 
               - if chat_action.status.online?

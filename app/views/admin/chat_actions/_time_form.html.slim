@@ -14,6 +14,7 @@
         = f.input :content
         = f.input :trigger
         = f.input :status
+        = f.input :mention, as: :select, collection: @chat_room.chat_contacts, label_method: :contact_name, value_method: :contact_uid, input_html: {multiple: true}
       .card-footer
         = index_link(admin_chat_room_path(@chat_room))
         = save_link
@@ -36,5 +37,7 @@
           p 只想要在每周的周一 周三的执行，那么
           every monday and wednesday at 12:30
 
+javascript:
+  
 
         

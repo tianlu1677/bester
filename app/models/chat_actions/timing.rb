@@ -33,11 +33,17 @@ module ChatActions
       Fugit.do_parse(trigger)
     end
 
+    def mention_contacts
+      return [] if mention.blank?
+
+      chat_room.chat_contacts.where(contact_uid: mention)
+    end
+
     def push_message!      
       chat_uid = chat_room.chat_uid
       payload = {
         text: content,
-        mention: []
+        mention: mention
       }
       ChatSendMessageService.new(chat_uid, 'text', payload).send!
       update(last_send_at: Time.now, error_info: nil)

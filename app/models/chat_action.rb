@@ -24,6 +24,12 @@ class ChatAction < ApplicationRecord
 
   validates :content, :trigger, presence: true
 
+  before_save :strip_mention, if: :mention_changed?
+
+  def strip_mention
+    self.mention = mention.select {|x| x.present?}
+  end
+
   def push_message!
     puts "push_message"
   end
