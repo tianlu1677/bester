@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::UsersController < Admin::ApplicationController
+class Admin::SearchController < Admin::ApplicationController
   
   def chat_contacts
     @q = params[:q]
