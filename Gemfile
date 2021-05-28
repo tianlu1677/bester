@@ -45,6 +45,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :production do  
   gem 'newrelic_rpm'
+  gem 'sentry-raven'
 end
 
 group :development do
