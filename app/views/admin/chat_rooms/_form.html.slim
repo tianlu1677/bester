@@ -5,13 +5,12 @@
         h3
           = t("action_labels.#{action_name}")
           = resource_class.model_name.human
+          = link_to @chat_room.room_topic, admin_chat_room_path(chat_room) if @chat_room.id.present?
       = simple_form_for [:admin, chat_room], wrapper: :horizontal_form do |f|
         .card-block.card-body
           = render "admin/common/error_info", item: chat_room        
-          = f.input :status          
+          = f.input :status
           = f.input :mark
-
-
-        .card-footer
-          = save_link
+        .card-footer          
           = index_link(admin_chat_rooms_path)
+          = save_link

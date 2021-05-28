@@ -17,7 +17,11 @@ class ChatRoom < ApplicationRecord
   validates :room_uid, presence: true
   validates_uniqueness_of :room_uid
 
+  enumerize :status, in: [:online, :offline], default: :online
+
   has_many :chat_messages, primary_key: :room_uid, foreign_key: :room_uid
+  has_many :chat_actions
+
   def chat_contacts
     ChatContact.where('room_uids && ? ', "{#{room_uid}}")
   end

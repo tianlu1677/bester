@@ -59,7 +59,7 @@ class ChatMessage < ApplicationRecord
     13 => 'video',
     9999 => 'roomoinvitation',
     10_000 => 'system',
-    10_001 => 'wechatSystem'
+    10_001 => 'wechatsystem'
   }
 end
 

@@ -1,0 +1,6 @@
+.row
+  - type = params[:type] || chat_action.type
+  - if type == 'ChatActions::Timing'
+    = render "time_form", chat_action: @chat_action
+  - else
+    = render "normal_form"

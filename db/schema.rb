@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_034100) do
+ActiveRecord::Schema.define(version: 2021_05_28_030938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,21 @@ ActiveRecord::Schema.define(version: 2021_05_27_034100) do
     t.index ["webhook_id"], name: "index_backpacks_on_webhook_id"
   end
 
+  create_table "chat_actions", force: :cascade do |t|
+    t.string "type"
+    t.string "title"
+    t.integer "chat_room_id"
+    t.integer "chat_contact_id"
+    t.string "content"
+    t.string "trigger"
+    t.datetime "last_send_at"
+    t.string "status"
+    t.jsonb "metadata"
+    t.jsonb "reply_payload"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "chat_contacts", force: :cascade do |t|
     t.string "contact_uid"
     t.string "contact_name"
@@ -86,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_034100) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "bot_uid"
-    t.string "room_uid"
+    t.text "room_uids", default: [], array: true
     t.index ["contact_name"], name: "index_chat_contacts_on_contact_name"
     t.index ["contact_uid"], name: "index_chat_contacts_on_contact_uid"
   end
@@ -97,12 +112,12 @@ ActiveRecord::Schema.define(version: 2021_05_27_034100) do
     t.string "chat_uid"
     t.jsonb "payload"
     t.text "content"
-    t.string "message_type"
     t.string "contact_name"
     t.string "contact_uid"
     t.string "contact_avatar_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "message_type"
   end
 
   create_table "chat_rooms", force: :cascade do |t|

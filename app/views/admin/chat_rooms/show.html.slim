@@ -1,23 +1,42 @@
-.col-lg-12
-  .card
-    .card-header
-      i.fa.fa-align-justify
-      = resource_class.model_name.human
-    .card-block.card-body
-      table.table.table-bordered.table-striped.table-sm
-        thead
-          tr
-            th
-              | 属性
-            th
-              | 内容
-        tbody
-          - ChatRoom.attribute_names.each do |attr|
+.row
+  .col-md-4
+    .card
+      .card-header
+        i.fa.fa-align-justify        
+        = destroy_link admin_chat_room_path(@chat_room)
+        = @chat_room.room_topic
+      .card-block.card-body
+        table.table.table-bordered.table-striped.table-sm
+          thead
             tr
               th
-                = resource_class.human_attribute_name(attr)
+                | 属性
               th
-                = @chat_room.send(attr)
-      = index_link admin_chat_rooms_path
-      
-    
+                | 内容
+          tbody
+            - ChatRoom.attribute_names.each do |attr|
+              tr
+                th
+                  = resource_class.human_attribute_name(attr)
+                th
+                  = @chat_room.send(attr)        
+        = index_link admin_chat_rooms_path
+        = edit_link edit_admin_chat_room_path(@chat_room)
+        hr
+      .card-block.card-body  
+        table.table.table-bordered.table-striped.table-sm
+          thead
+            tr              
+              th
+                | 头像
+              th
+                | 姓名  
+          tbody
+            - @chat_room.chat_contacts.each do |contact|
+              tr
+                th
+                  = image_link contact.avatar_url
+                th
+                  = link_to "#{contact.contact_name}(#{contact.contact_uid})", admin_chat_contact_path(contact)
+  .col-md-8
+    = render "admin/chat_actions/index", chat_actions: @chat_room.chat_actions

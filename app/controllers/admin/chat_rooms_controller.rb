@@ -9,7 +9,9 @@ class Admin::ChatRoomsController < Admin::ApplicationController
     @pagy, @chat_rooms = pagy(@chat_rooms, items: params[:per_page] || 20, page: params[:page])
   end
 
-  def show; end
+  def show
+    @chat_actions = @chat_room.chat_actions
+  end
 
   def new
     @chat_room = ChatRoom.new

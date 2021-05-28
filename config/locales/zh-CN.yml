@@ -44,8 +44,9 @@ zh-CN:
       account: 用户
       action: 动作记录
       chat_message: 聊天记录
-      chat_root: 群聊
+      chat_room: 群聊
       chat_contact: 聊天联系人
+      chat_action: 聊天推送
     attributes:
       user:
         id: ID
@@ -89,4 +90,51 @@ zh-CN:
         type: 类型
         cover: 截图
         video: 转化后视频
+      chat_action:
+        id: ID
+        type: 类型
+        title: 备注名称
+        chat_room_id: 所属聊天组
+        content: 发送内容
+        trigger: 触发时机
+        last_send_at: 最后发送时间
+        status: 运行状态
+        metadata: 附属信息
+        reply_payload: 点击回复状态        
+      chat_room:
+        room_uid: 唯一标识
+        room_topic: 群名称
+        chat_uid: 对话ID
+        bot_uid: 机器人ID
+        bot_weixin: 机器人微信
+        status: 状态
+        mark: 备注标识
+        created_at: 创建时间
+        updated_at: 更新时间
+        messages_count: 信息数
+        actions_count: 动作数
+      chat_contact:
+        contact_uid: 联系人ID
+        contact_name: 联系人名称
+        avatar_url: 头像
+        contact_type: 类型
+        alias_name: 别名
+        marker: 备注
+        created_at: 创建时间
+        updated_at: 更新时间
+        bot_uid: 机器人ID
+        room_uids: 加入的群聊
+
+      chat_message:
+        room_uid: 群聊ID
+        message_uid: 聊天ID
+        chat_uid: 对话ID
+        payload: 详细内容
+        content: 文本内容
+        contact_name: 发送者
+        contact_uid: 发送者ID
+        contact_avatar_url: 发送人头像
+        created_at: 发送时间
+        updated_at: 更新时间
+        message_type: 内容类型
 

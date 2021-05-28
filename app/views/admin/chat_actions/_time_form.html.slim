@@ -1,0 +1,40 @@
+.col-md-6
+  .card
+    .card-header
+      h3
+        = t("action_labels.#{action_name}")
+        = resource_class.model_name.human
+        = index_link(admin_chat_room_path(@chat_room))
+    - url = @chat_action&.id.blank? ? admin_chat_room_chat_actions_path(@chat_room) : admin_chat_room_chat_action_path(@chat_room, @chat_action)
+    = simple_form_for [:admin, @chat_room, chat_action], as: :chat_action, url: url, wrapper: :horizontal_form do |f|
+      .card-block.card-body
+        = render "admin/common/error_info", item: chat_action
+        = f.input :type, input_html: { value: params[:type] || @chat_action.type}
+        = f.input :title
+        = f.input :content
+        = f.input :trigger
+        = f.input :status
+      .card-footer
+        = index_link(admin_chat_room_path(@chat_room))
+        = save_link
+
+.col-md-6
+  .card
+    .card-header
+      h5 定时推送说明
+      a href="https://github.com/floraison/fugit"
+        | 链接
+
+    .card-block.card-body
+      p 触发时机填写 
+      ul 
+        li 
+          p 16:00 意思就是每天的 16:00 分执行。08:05 就是每天早上八点05分执行
+        li 
+          p 如果想要在每天的 早上 9:00 和12:08 分别执行一次  every day at 09:00 and 12:08
+        li  
+          p 只想要在每周的周一 周三的执行，那么
+          every monday and wednesday at 12:30
+
+
+        

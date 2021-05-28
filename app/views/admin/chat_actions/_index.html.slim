@@ -1,0 +1,52 @@
+.card
+  .card-header
+    = '☰ '
+    = resource_class.model_name.human
+    = new_link new_admin_chat_room_chat_action_path(@chat_room, type: 'ChatActions::Timing')
+    = link_to "#{@chat_room.room_topic}群组", admin_chat_room_path(@chat_room)
+  .card-block.card-body[style="overflow: scroll"]
+    table.table.table-bordered.table-striped.table-condensed
+      thead
+        tr
+      tbody
+          - attributes = %w[id title trigger status last_send_at metadata]
+          - attributes.each do |attr|
+            th
+              = ChatAction.human_attribute_name(attr)
+          th
+            = t('action_labels.action')
+      tbody
+        - @chat_actions.each do |chat_action|
+          tr id="chat_action_#{chat_action.id}"
+            td = show_link admin_chat_room_chat_action_path(@chat_room, chat_action), text: chat_action.id
+            td = chat_action.title
+            td 
+              = chat_action.trigger
+              br
+              = "Next:#{chat_action.next_exec_time.try(:strftime, '%Y-%m-%d %H:%M:%S').presence}" if chat_action.respond_to?(:next_exec_time)
+              br
+              .alert.alert-info
+                = chat_action.content
+              br          
+            td 
+              - if chat_action.status.online?
+                .badge.badge-success
+                  = chat_action.status_text
+              - else
+                .badge.badge-danger
+                  = chat_action.status_text
+            td 
+              = chat_action.last_send_at
+              br
+              = chat_action.error_info
+            td = chat_action.metadata
+            td
+              = edit_link edit_admin_chat_room_chat_action_path(@chat_room, chat_action)
+              / = show_link admin_chat_room_chat_action_path(@chat_room, chat_action)
+              .btn-group
+                button.btn.btn-warning.btn-sm.dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  | 操作
+                ul.dropdown-menu
+                  li 
+                    = link_to "立即发送", push_now_admin_chat_action_path(chat_action), method: :post, class: 'btn btn-sm'
+                    = destroy_link admin_chat_room_chat_action_path(@chat_room,chat_action), remote: true, opts: {css: 'dropdown-item'}

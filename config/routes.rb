@@ -28,8 +28,15 @@ Rails.application.routes.draw do
     resources :operation_logs
     resources :users
     resources :chatbots
-    resources :chat_rooms
+    resources :chat_rooms do
+      resources :chat_actions  
+    end
     resources :chat_contacts
     resources :chat_messages
+    resources :chat_actions do
+      member do 
+        post :push_now
+      end
+    end
   end
 end

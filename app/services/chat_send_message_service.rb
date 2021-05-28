@@ -70,6 +70,8 @@ class ChatSendMessageService
   #   }
   # }
   def request(data)
+    return {code: 0} if Rails.env.development?
+
     Rails.logger.info("send data #{data}")
     res = RestClient.post(URL, data.to_json, { content_type: :json, accept: :json })
     body = JSON.load(res.body)

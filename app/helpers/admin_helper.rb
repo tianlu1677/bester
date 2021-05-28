@@ -6,8 +6,8 @@ module AdminHelper
                                          remote: remote
   end
 
-  def show_link(url)
-    link_to t('action_labels.show'), url, class: 'btn btn-sm btn-info margin-right-5'
+  def show_link(url, text: nil)
+    link_to (text || t('action_labels.show')), url, class: 'btn btn-sm btn-info margin-right-5'
   end
 
   def edit_link(url, text: nil, opts: { css: nil })

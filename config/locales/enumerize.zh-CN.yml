@@ -9,3 +9,11 @@ zh-CN:
         new: 新建
         online: 上线
         offline: 下线
+    chat_action:
+      status:              
+        online: 运行
+        offline: 停止 
+    chat_room:
+      status:              
+        online: 运行
+        offline: 停止        

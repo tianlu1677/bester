@@ -8,3 +8,7 @@ ChatRoomAlertWorker:
   cron: "1 9-20/5 * * *"
   class: 'ChatRoomAlertWorker'
   queue: default
+ChatActionTimingCheckWorker:
+  cron: "* * * * *" # 每分钟运行一次
+  class: 'ChatActionTimingCheckWorker'
+  queue: default
