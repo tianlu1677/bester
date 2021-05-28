@@ -39,13 +39,14 @@ gem 'oj'
 gem 'foreman'
 gem "clearance"
 gem 'rest-client'
+gem 'sentry-raven'
 # tools
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :production do  
   gem 'newrelic_rpm'
-  gem 'sentry-raven'
+
 end
 
 group :development do
