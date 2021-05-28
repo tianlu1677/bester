@@ -7,7 +7,7 @@ import queryString from 'query-string'
 import ReactDOM from 'react-dom'
 import "controllers"
 import 'select2';
-
+import PerfectScrollbar from 'perfect-scrollbar';
 // https://chartkick.com/
 require("chartkick")
 require("chart.js")
