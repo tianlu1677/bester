@@ -20,6 +20,8 @@ class ChatContact < ApplicationRecord
   class << self
     def parse(data)
       room_uid = data[:roomId]
+      return if data[:contactId].blank?
+
       chat_contact = ChatContact.find_by(contact_uid: data[:contactId])
       if chat_contact.present?
         if room_uid.present? && !chat_contact.room_uids.to_s.include?(room_uid)

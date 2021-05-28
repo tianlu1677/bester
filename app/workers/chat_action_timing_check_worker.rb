@@ -12,7 +12,7 @@ class ChatActionTimingCheckWorker
       chat_room.chat_actions.each do |chat_action|
         next if !chat_action.can_trigger?(time: current_time)
 
-        ChatAction.delay(retry: false).send_message(chat_action.action_id)
+        ChatAction.delay(retry: false).send_message(chat_action.id)
       end  
     end
   end
