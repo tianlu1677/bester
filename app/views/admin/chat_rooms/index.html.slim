@@ -25,7 +25,7 @@
                   = chat_room.room_uid
                   br
                   = "chatId( #{chat_room.chat_uid} )"
-                td = chat_room.room_topic
+                td = link_to chat_room.room_topic, admin_chat_room_path(chat_room)
                 td = link_to chat_room.chat_messages.count, admin_chat_messages_path(q: { room_uid_eq: chat_room.room_uid })
                 td = chat_room.chat_actions.count
                 td                  

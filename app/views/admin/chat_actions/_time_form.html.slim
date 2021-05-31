@@ -9,9 +9,10 @@
     = simple_form_for [:admin, @chat_room, chat_action], as: :chat_action, url: url, wrapper: :horizontal_form do |f|
       .card-block.card-body
         = render "admin/common/error_info", item: chat_action
-        = f.input :type, input_html: { value: params[:type] || @chat_action.type}
+        = f.input :type, label: false, input_html: { value: params[:type] || @chat_action.type, class: 'd-none'}
         = f.input :title
         = f.input :content
+        = f.input :file
         = f.input :trigger
         = f.input :status
         = f.input :mention, as: :select, collection: @chat_room.chat_contacts, label_method: :contact_name, value_method: :contact_uid, input_html: {multiple: true}

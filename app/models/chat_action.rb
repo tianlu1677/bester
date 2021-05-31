@@ -26,6 +26,8 @@ class ChatAction < ApplicationRecord
 
   before_save :strip_mention, if: :mention_changed?
 
+  has_one_attached :file
+
   def strip_mention
     self.mention = mention.select {|x| x.present?}
   end
