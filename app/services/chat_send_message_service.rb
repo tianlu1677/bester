@@ -1,6 +1,6 @@
 class ChatSendMessageService
   URL = 'https://ex-api.botorange.com/message/send'
-  TOKEN = '60ae2102b0e786003f0e18fa'
+  TOKEN = '60b47ec504c6b100456ccdc4'
 
   attr_accessor :chat_uid, :type, :payload
 
