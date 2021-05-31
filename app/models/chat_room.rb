@@ -33,6 +33,7 @@ class ChatRoom < ApplicationRecord
       chat_room = ChatRoom.find_by(room_uid: data[:roomId])
       if chat_room.present?
         chat_room.update(room_topic: data[:roomTopic]) if chat_room.room_topic != data[:roomTopic]
+        chat_room.update(chat_uid: data[:chatId]) if chat_room.chat_uid != data[:chatId]
         return
       end
 
