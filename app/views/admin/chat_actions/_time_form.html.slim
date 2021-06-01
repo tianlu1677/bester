@@ -12,7 +12,13 @@
         = f.input :type, label: false, input_html: { value: params[:type] || @chat_action.type, class: 'd-none'}
         = f.input :title
         = f.input :content
+        
         = f.input :file
+        - if chat_action.file_url.present?
+          = f.input :title, label: '图片' do
+            = image_link chat_action.file_url, size: '100x100'
+            = link_to "删除", delete_file_admin_chat_room_chat_action_path(@chat_room, @chat_action), method: :post
+
         = f.input :trigger
         = f.input :status
         = f.input :mention, as: :select, collection: @chat_room.chat_contacts, label_method: :contact_name, value_method: :contact_uid, input_html: {multiple: true}

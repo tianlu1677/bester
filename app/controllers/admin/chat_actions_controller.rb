@@ -2,7 +2,7 @@
 
 class Admin::ChatActionsController < Admin::ApplicationController
   before_action :set_room
-  before_action :set_chat_action, only: %i[show edit update destroy push_now]
+  before_action :set_chat_action, only: %i[show edit update destroy push_now delete_file]
 
   def index
     if @chat_room
@@ -55,6 +55,14 @@ class Admin::ChatActionsController < Admin::ApplicationController
       format.html { redirect_to(admin_chat_room_path(@chat_action.chat_room), notice: '更新成功。') }
       format.js
     end
+  end
+
+  def delete_file
+    @chat_action.file.purge
+    respond_to do |format|
+      format.html { redirect_to(edit_admin_chat_room_chat_action_path(@chat_room, @chat_action), notice: '更新成功。') }
+      format.js
+    end 
   end
 
   private

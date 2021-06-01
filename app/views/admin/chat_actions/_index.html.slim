@@ -29,7 +29,7 @@
                 = chat_action.content
                 br
                 = "@" + chat_action.mention_contacts.pluck(:contact_name).join(' @') if chat_action.mention.present?
-
+              = image_link chat_action.file_url, size: '100x100' if chat_action.file_url.present?
               br          
             td 
               - if chat_action.status.online?

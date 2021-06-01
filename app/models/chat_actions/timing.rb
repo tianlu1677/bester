@@ -39,7 +39,7 @@ module ChatActions
       chat_room.chat_contacts.where(contact_uid: mention)
     end
 
-    def push_message!      
+    def push_message!
       chat_uid = chat_room.chat_uid
       payload = {
         text: content,

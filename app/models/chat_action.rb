@@ -37,7 +37,7 @@ class ChatAction < ApplicationRecord
   end
 
   def file_url
-    return '' if file.blank?
+    return '' if !file.attached?
     "#{ENV['WEBSITE']}/#{Rails.application.routes.url_helpers.rails_blob_url(file, only_path: true)}"
   end
 
