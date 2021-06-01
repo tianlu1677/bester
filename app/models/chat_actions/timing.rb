@@ -45,7 +45,7 @@ module ChatActions
         text: content,
         mention: mention
       }
-      ChatSendMessageService.new(chat_uid, 'image', {url: file_url).send! if file_url.present?
+      ChatSendMessageService.new(chat_uid, 'image', {url: file_url}).send! if file_url.present?
       ChatSendMessageService.new(chat_uid, 'text', payload).send!
       update(last_send_at: Time.now, error_info: nil)
     rescue => e
