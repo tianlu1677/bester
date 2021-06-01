@@ -39,4 +39,4 @@
                 th
                   = link_to "#{contact.contact_name}(#{contact.contact_uid})", admin_chat_contact_path(contact)
   .col-md-8
-    = render "admin/chat_actions/index", chat_actions: @chat_room.chat_actions
+    = render "admin/chat_actions/index", chat_actions: @chat_actions

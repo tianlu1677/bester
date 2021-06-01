@@ -16,8 +16,9 @@ class ChatReplyService
   def reply_payload
     if content.to_s.start_with? '查'
       search_content = content[1..].strip
+      baidu_url = URI.encode("https://baidu.com/s?wd=#{search_content}")
       payload = {
-        text: URI.encode("https://baidu.com/s?wd=#{search_content}")
+        text: "百度一下: #{search_content} 👉 #{baidu_url}"
       }
     end
   end

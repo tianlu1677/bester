@@ -10,7 +10,7 @@ class Admin::ChatRoomsController < Admin::ApplicationController
   end
 
   def show
-    @chat_actions = @chat_room.chat_actions
+    @chat_actions = @chat_room.chat_actions.order('chat_actions.id asc')
   end
 
   def new
