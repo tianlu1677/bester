@@ -36,6 +36,11 @@ class ChatAction < ApplicationRecord
     puts "push_message"
   end
 
+  def file_url
+    return '' if file.blank?
+    "#{ENV['WEBSITE']}/#{Rails.application.routes.url_helpers.rails_blob_url(file, only_path: true)}"
+  end
+
   class << self
     def send_message(action_id)
       action = ChatAction.find(action_id)

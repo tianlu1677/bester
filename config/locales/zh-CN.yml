@@ -101,7 +101,8 @@ zh-CN:
         status: 运行状态
         metadata: 附属信息
         reply_payload: 点击回复状态  
-        mention: 提及某人      
+        mention: 提及某人
+        file: 要发送的图片  
       chat_room:
         room_uid: 唯一标识
         room_topic: 群名称

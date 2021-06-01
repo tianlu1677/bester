@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   # delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
 
-  root 'home#index'
+  root 'admin/home#index'
 
   post '/message', to: 'messages#message'
 
