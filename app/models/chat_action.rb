@@ -38,7 +38,9 @@ class ChatAction < ApplicationRecord
 
   def file_url
     return '' if !file.attached?
-    "#{ENV['WEBSITE']}/#{Rails.application.routes.url_helpers.rails_blob_url(file, only_path: true)}"
+    url = "#{ENV['WEBSITE']}/#{Rails.application.routes.url_helpers.rails_blob_url(file, only_path: true)}"
+    body = Faraday.get(url).body
+    body.match(/http.*.(jpg|jpeg|png|gif)/).to_s
   end
 
   class << self
