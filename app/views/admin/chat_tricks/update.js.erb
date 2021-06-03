@@ -1,0 +1,6 @@
+<% if @chat_trick.errors.empty? %>
+  $("#chat_trick_<%= @chat_trick.id %>").html('<%= j( render :partial => 'admin/chat_tricks/chat_trick', locals: { chat_trick: @chat_trick} ) %>');
+  toastr.success("执行成功", "温馨提示") 
+<% else %>
+  toastr.error("执行失败", "温馨提示") 
+<% end %>

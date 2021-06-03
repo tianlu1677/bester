@@ -40,6 +40,7 @@ gem 'foreman'
 gem "clearance"
 gem 'rest-client'
 gem 'sentry-raven'
+gem 'rails-settings-cached'
 # tools
 
 gem 'bootsnap', '>= 1.4.2', require: false

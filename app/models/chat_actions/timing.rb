@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: chat_actions
+#
+#  id              :bigint           not null, primary key
+#  type            :string
+#  title           :string
+#  chat_room_id    :integer
+#  chat_contact_id :integer
+#  content         :string
+#  trigger         :string
+#  last_send_at    :datetime
+#  status          :string
+#  metadata        :jsonb
+#  reply_payload   :jsonb
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  error_info      :text
+#  mention         :text             default([]), is an Array
+#
 module ChatActions
   class Timing < ChatAction
     validates :trigger, :content, presence: true

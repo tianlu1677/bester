@@ -22,7 +22,7 @@
               tr id="chat_room_#{chat_room.id}"
                 td = chat_room.id
                 td 
-                  = chat_room.room_uid
+                  = link_to chat_room.room_uid, admin_chat_room_path(chat_room)
                   br
                   = "chatId( #{chat_room.chat_uid} )"
                 td = link_to chat_room.room_topic, admin_chat_room_path(chat_room)
@@ -44,7 +44,7 @@
                 / td = chat_room.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
                 td
                   = edit_link edit_admin_chat_room_path(chat_room)
-                  = show_link admin_chat_room_path(chat_room)
+                  / = show_link admin_chat_room_path(chat_room)
                   
 
         == pagy_bootstrap_nav @pagy

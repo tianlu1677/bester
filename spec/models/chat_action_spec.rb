@@ -15,6 +15,8 @@
 #  reply_payload   :jsonb
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  error_info      :text
+#  mention         :text             default([]), is an Array
 #
 require 'rails_helper'
 

@@ -1,0 +1,51 @@
+.row
+  = render "search"
+  .col-lg-12
+    .card
+      .card-header
+        = '☰ '
+        = resource_class.model_name.human
+        = link_to "新建文本", new_admin_chat_trick_path(category: :text), class: 'btn btn-sm'
+        = link_to "新建图片", new_admin_chat_trick_path(category: :image), class: 'btn btn-sm'
+        = link_to "新建视频", new_admin_chat_trick_path(category: :video), class: 'btn btn-sm'
+        = link_to "新建链接", new_admin_chat_trick_path(category: :link), class: 'btn btn-sm'
+        = link_to "新建小程序", new_admin_chat_trick_path(category: :miniprogram), class: 'btn btn-sm'
+        / = page_entries_info @chat_tricks
+      .card-block.card-body[style="overflow: scroll"]
+        table.table.table-bordered.table-striped.table-condensed
+          thead
+            tr
+              - attributes = %w[id category title content payload trigger message_type]
+              - attributes.each do |attr|
+                th
+                  = resource_class.human_attribute_name(attr)
+              th
+                = t('action_labels.action')
+          tbody
+            - @chat_tricks.each do |chat_trick|
+              tr id="chat_trick_#{chat_trick.id}"
+                - category = chat_trick.category
+                td = chat_trick.id
+                td = chat_trick.category
+                td = chat_trick.title
+                td = chat_trick.content
+                td 
+                  - if category == 'image'
+                    = image_link chat_trick.raw_file_url, size: '100x100'
+                  - if category == 'video'
+                    = video_link chat_trick.raw_file_url, size: '100x100'  
+                  - if category == 'link'
+                    = chat_trick.link_title
+                    = chat_trick.link_desc
+                    = image_link chat_trick.raw_file_url, size: '100x100'
+                  - if category == 'text'
+                td = chat_trick.trigger
+                td = chat_trick.message_type
+                
+                / td = chat_trick.created_at.try(:strftime, '%Y-%m-%d %H:%M:%S').presence || "-"
+                td
+                  = edit_link edit_admin_chat_trick_path(chat_trick)
+                  / = show_link admin_chat_trick_path(chat_trick)
+                  
+
+        == pagy_bootstrap_nav @pagy

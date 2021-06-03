@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    .card
+      .card-header
+        h3
+          = t("action_labels.#{action_name}")
+          = resource_class.model_name.human
+      = simple_form_for @setting, url: admin_setting_path(@setting.var), method: 'patch', wrapper: :horizontal_form, html: {class: 'form form-bordered'}, role: 'form' do |f|
+        .card-body
+          - isRichText = %w[private_content user_agreement].include?(@setting.var)
+          = f.input :value, input_html: { rows: 5, value: Setting.send(@setting.var), id: (isRichText ? 'richeditor': '') }, label: t("setting.#{@setting.var}")
+        .card-footer          
+          = index_link admin_settings_path
+          = save_link
+
+      - if @setting.var == 'comments_list'
+        .card
+          .card-header
+            | 评论内容
+          .card-block            
+            - @setting.value.to_s.split(' ').map do |v|
+              p = v
+javascript:

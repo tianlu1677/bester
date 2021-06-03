@@ -1,0 +1,54 @@
+.row
+  .col-md-10
+    .card
+      .card-header
+        h3
+          = t("action_labels.#{action_name}")
+          = resource_class.model_name.human
+          / = link_to @chat_trick.room_topic, admin_chat_trick_path(chat_trick) if @chat_trick.id.present?
+      = simple_form_for [:admin, chat_trick], wrapper: :horizontal_form do |f|
+        .card-block.card-body
+          = render "admin/common/error_info", item: chat_trick     
+          - category = params[:category] || @chat_trick.category
+          - chat_trick_present = @chat_trick.id.present?
+          = f.input :title, label: '标题'
+          = f.input :category, label: false, input_html: { value: category, class: 'd-none'}
+          = f.input :content, label: '推送的内容'
+          = f.input :trigger, label: '触发时机'
+          - if category == 'text'
+          - if category == 'image'
+            = f.input :file, label: "图片"
+            = f.input :title, label: '图片' do
+              = image_link chat_trick.raw_file_url, size: '100x100'
+              = link_to "删除", delete_file_admin_chat_trick_path(@chat_trick), method: :post if chat_trick_present
+
+          - if category == 'video'
+            = f.input :file, label: "视频"
+            = f.input :title, label: '视频' do
+              = video_link chat_trick.raw_file_url, size: '100x100'
+              = link_to "删除", delete_file_admin_chat_trick_path(@chat_trick), method: :post if chat_trick_present
+        
+          - if category == 'link'
+            = f.input :link_url
+            = f.input :link_title
+            = f.input :link_desc
+            = f.input :file, label: "封面图"
+            = f.input :title, label: '图片' do
+              = image_link chat_trick.raw_file_url, size: '100x100'
+              = link_to "删除", delete_file_admin_chat_trick_path(@chat_trick), method: :post if chat_trick_present
+             
+          - if category == 'miniprogram'
+            = f.input :mini_path
+            = f.input :mini_title
+            = f.input :mini_desc
+            = f.input :file, label: "封面图"
+            = f.input :title, label: '图片' do
+              = image_link chat_trick.raw_file_url, size: '100x100'
+              = link_to "删除", delete_file_admin_chat_trick_path(@chat_trick), method: :post if chat_trick_present
+             
+
+
+          
+        .card-footer
+          = index_link(admin_chat_tricks_path)
+          = save_link

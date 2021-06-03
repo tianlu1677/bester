@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_074640) do
+ActiveRecord::Schema.define(version: 2021_06_03_082450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,17 @@ ActiveRecord::Schema.define(version: 2021_05_28_074640) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "chat_tricks", force: :cascade do |t|
+    t.string "category"
+    t.string "title"
+    t.text "content"
+    t.jsonb "payload", default: {}
+    t.string "message_type"
+    t.string "trigger"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "custom_action_logs", force: :cascade do |t|
     t.integer "webhook_id"
     t.integer "from_custom_action_id"
@@ -165,6 +176,14 @@ ActiveRecord::Schema.define(version: 2021_05_28_074640) do
     t.string "controller"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -27,7 +27,13 @@ Rails.application.routes.draw do
     root 'home#index'
     resources :operation_logs
     resources :users
+    resources :settings
     resources :chatbots
+    resources :chat_tricks do
+      member do
+        post :delete_file
+      end
+    end
     resources :chat_rooms do
       resources :chat_actions do
         member do 
@@ -36,7 +42,7 @@ Rails.application.routes.draw do
       end
     end
     resources :chat_contacts
-    resources :chat_messages
+    resources :chat_messages    
     resources :chat_actions do
       member do 
         post :push_now        

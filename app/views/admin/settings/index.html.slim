@@ -1,0 +1,33 @@
+.row
+  .col-lg-12
+    .card
+      .card-header
+        i.fa.fa-align-justify
+        = resource_class.model_name.human
+      .card-block[style="overflow: scroll"]
+        table.table.table-bordered.table-striped.table-condensed
+          thead
+            tr
+              th width="10%" = '说明'
+              th width="10%" = 'Key'
+              th width="30%" = '内容'
+
+              th width="10%"
+                = t('action_labels.action')
+          tbody
+            -  Setting.all.pluck(:var).each do |key|
+              tr
+                td = t("setting.#{key}")
+                td = key
+                td
+                  - if key.include?('img_url')
+                    = image_link Setting.send(key), size: '50x50'
+                    br
+                    = raw Setting.send(key)
+                  - elsif Setting.send(key).is_a? String
+                    = raw Setting.send(key)&.truncate(200)
+                  - else
+                    = raw Setting.send(key)   
+                td
+                  = edit_link edit_admin_setting_path(key)
+                  /= destroy_link admin_setting_path(key)
