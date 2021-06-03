@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_082450) do
+ActiveRecord::Schema.define(version: 2021_06_03_095952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,30 +50,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_082450) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "backpacks", force: :cascade do |t|
-    t.string "uuid"
-    t.string "url"
-    t.string "req_method"
-    t.string "ip"
-    t.string "hostname"
-    t.string "user_agent"
-    t.string "referer"
-    t.jsonb "headers"
-    t.integer "status_code"
-    t.integer "account_id"
-    t.string "token_uuid"
-    t.integer "webhook_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "content_length", default: 0
-    t.jsonb "query_params"
-    t.jsonb "form_params"
-    t.string "content_type"
-    t.string "media_type"
-    t.text "raw_content"
-    t.index ["webhook_id"], name: "index_backpacks_on_webhook_id"
   end
 
   create_table "chat_actions", force: :cascade do |t|
@@ -130,6 +106,13 @@ ActiveRecord::Schema.define(version: 2021_06_03_082450) do
     t.string "bot_weixin"
     t.string "status"
     t.string "mark"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chat_templates", force: :cascade do |t|
+    t.jsonb "payload", default: {}
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,21 @@
+.row
+  .col-md-10
+    .card
+      .card-header
+        h3
+          = t("action_labels.#{action_name}")
+          = resource_class.model_name.human
+          / = link_to @chat_template.room_topic, admin_chat_template_path(chat_template) if @chat_template.id.present?
+      = simple_form_for [:admin, chat_template], method: :patch, wrapper: :horizontal_form do |f|
+        .card-block.card-body
+          = render "admin/common/error_info", item: chat_template     
+          = f.input :title
+          / = f.input :payload
+          / = f.input :trick_groups, as: :text        
+
+          div#setting_template_key1 style="height: 500px; width: 800px"
+          div#value
+            = chat_template.trick_groups
+        .card-footer
+          = index_link(admin_chat_templates_path)
+          = save_link

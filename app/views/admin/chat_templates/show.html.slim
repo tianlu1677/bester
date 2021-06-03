@@ -1,0 +1,26 @@
+.row
+  .col-md-4
+    .card
+      .card-header
+        i.fa.fa-align-justify        
+        = destroy_link admin_chat_template_path(@chat_template)
+        = @chat_template.room_topic
+      .card-block.card-body
+        table.table.table-bordered.table-striped.table-sm
+          thead
+            tr
+              th
+                | 属性
+              th
+                | 内容
+          tbody
+            - ChatTemplate.attribute_names.each do |attr|
+              tr
+                th
+                  = resource_class.human_attribute_name(attr)
+                th
+                  = @chat_template.send(attr)        
+        = index_link admin_chat_templates_path
+        = edit_link edit_admin_chat_template_path(@chat_template)
+        hr
+      

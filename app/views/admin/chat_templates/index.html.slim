@@ -1,0 +1,31 @@
+.row
+  = render "search"
+  .col-lg-12
+    .card
+      .card-header
+        = '☰ '
+        = resource_class.model_name.human
+        = new_link new_admin_chat_template_path            
+      .card-block.card-body[style="overflow: scroll"]
+        table.table.table-bordered.table-striped.table-condensed
+          thead
+            tr
+              - attributes = %w[id title payload ]
+              - attributes.each do |attr|
+                th
+                  = resource_class.human_attribute_name(attr)
+              th
+                = t('action_labels.action')
+          tbody
+            - @chat_templates.each do |chat_template|
+              tr id="chat_template_#{chat_template.id}"
+                
+                td = chat_template.id                
+                td = chat_template.title
+                td = chat_template.payload                               
+                td
+                  = edit_link edit_admin_chat_template_path(chat_template)
+                  = show_link admin_chat_template_path(chat_template)
+                  
+
+        == pagy_bootstrap_nav @pagy

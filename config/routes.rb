@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :users
     resources :settings
     resources :chatbots
+    resources :chat_templates
     resources :chat_tricks do
       member do
         post :delete_file
