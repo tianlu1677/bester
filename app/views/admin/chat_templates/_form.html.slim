@@ -16,6 +16,8 @@
           div#setting_template_key1 style="height: 500px; width: 800px"
           div#value
             = chat_template.trick_groups
+            = f.simple_fields_for :trick_groups do |v_form|
+              = render "trick_group", f: v_form
         .card-footer
           = index_link(admin_chat_templates_path)
           = save_link

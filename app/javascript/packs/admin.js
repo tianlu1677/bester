@@ -11,6 +11,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
 // https://chartkick.com/
 require("chartkick")
 require("chart.js")
+require("@nathanvda/cocoon")
 
 window.queryString = queryString
 window.toastr = toastr;
